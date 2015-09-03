@@ -1,6 +1,6 @@
-# Heroku Buildpack for Ruby Oracle
+# Heroku Buildpack for Ruby/NodeJS Oracle
 
-Heroku buildpack for setting up Oracle Instant Client and the `LD_LIBRARY_PATH` so that Bundler can build [ruby-oci8](https://github.com/kubo/ruby-oci8)
+Heroku buildpack for setting up Oracle Instant Client and the `LD_LIBRARY_PATH`, `OCI_LIB_DIR` and `OCI_INC_DIR` so that Bundler can build [ruby-oci8](https://github.com/kubo/ruby-oci8) or npm can build [node-oracledb](https://github.com/oracle/node-oracledb)
 
 # Usage
 
