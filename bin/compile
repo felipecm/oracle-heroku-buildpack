@@ -15,8 +15,6 @@ puts "-----> Found an .oracle.yml"
 
 ORACLE_CONFIG = YAML.load_file("#{BUILD_DIR}/.oracle.yml")
 
-puts ORACLE_CONFIG
-
 ORACLE_INSTANT_CLIENT_DIR="vendor/oracle_instantclient"
 ORACLE_INSTANT_CLIENT_URL="https://www.dropbox.com/s/ro5rfqwgtjdo75b/oracle-instantclient-full-12.1-linux.x64.tar.gz"
 ORACLE_INSTANT_CLIENT_FILENAME=ORACLE_INSTANT_CLIENT_URL.split(/\//).last
@@ -37,16 +35,18 @@ indent "Successfully extracted #{ORACLE_INSTANT_CLIENT_FILENAME}"
 ORACLE_NETWORK_ADMIN_DIR = "#{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/network/admin"
 `mkdir -p #{ORACLE_NETWORK_ADMIN_DIR}`
 
-TNSNAMES_FILENAME = ORACLE_CONFIG["tnsnames.ora"]
-if File.exists?(File.join(BUILD_DIR,TNSNAMES_FILENAME))
-  indent "Symlinking #{TNSNAMES_FILENAME} to #{ORACLE_INSTANT_CLIENT_DIR}/network/admin/tnsnames.ora"
-  `ln -sf #{File.join('/app',TNSNAMES_FILENAME)} #{ORACLE_NETWORK_ADMIN_DIR}/tnsnames.ora`
-end
+if ORACLE_CONFIG
+  TNSNAMES_FILENAME = ORACLE_CONFIG["tnsnames.ora"]
+  if File.exists?(File.join(BUILD_DIR,TNSNAMES_FILENAME))
+    indent "Symlinking #{TNSNAMES_FILENAME} to #{ORACLE_INSTANT_CLIENT_DIR}/network/admin/tnsnames.ora"
+    `ln -sf #{File.join('/app',TNSNAMES_FILENAME)} #{ORACLE_NETWORK_ADMIN_DIR}/tnsnames.ora`
+  end
 
-SQLNET_FILENAME = ORACLE_CONFIG["sqlnet.ora"]
-if File.exists?(File.join(BUILD_DIR,SQLNET_FILENAME))
-  indent "Symlinking #{SQLNET_FILENAME} to #{ORACLE_INSTANT_CLIENT_DIR}/network/admin/sqlnet.ora"
-  `ln -sf #{File.join('/app',SQLNET_FILENAME)} #{ORACLE_NETWORK_ADMIN_DIR}/sqlnet.ora`
+  SQLNET_FILENAME = ORACLE_CONFIG["sqlnet.ora"]
+  if File.exists?(File.join(BUILD_DIR,SQLNET_FILENAME))
+    indent "Symlinking #{SQLNET_FILENAME} to #{ORACLE_INSTANT_CLIENT_DIR}/network/admin/sqlnet.ora"
+    `ln -sf #{File.join('/app',SQLNET_FILENAME)} #{ORACLE_NETWORK_ADMIN_DIR}/sqlnet.ora`
+  end
 end
 
 indent "Create profile.d script"
