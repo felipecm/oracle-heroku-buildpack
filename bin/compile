@@ -64,6 +64,8 @@ end
 
 indent "Save build LD_LIBRARY_PATH to ENV_DIR"
 
+puts ENV_DIR
+
 LD_LIBRARY_PATH_FILE = File.join(ENV_DIR, 'LD_LIBRARY_PATH')
 existing_ld_library_path = `cat #{LD_LIBRARY_PATH_FILE}`  if File.exists?(LD_LIBRARY_PATH_FILE)
 
