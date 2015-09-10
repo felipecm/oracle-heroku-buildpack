@@ -29,7 +29,7 @@ indent "Making directory #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}"
 
 indent "Downloading and extracting #{ORACLE_INSTANT_CLIENT_FILENAME}"
 result = `wget #{ORACLE_INSTANT_CLIENT_URL} #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME}`
-result = `alien -i #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME}`
+result = `cp #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME} #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME}.2`
 
 unless $?.success?
   indent "Failure while downloading Oracle instant client archive: #{$?}"
