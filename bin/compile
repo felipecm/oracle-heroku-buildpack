@@ -29,7 +29,7 @@ indent "Making directory #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}"
 
 indent "Downloading and extracting #{ORACLE_INSTANT_CLIENT_FILENAME}"
 result = `wget -O #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME} #{ORACLE_INSTANT_CLIENT_URL}`
-result = `rpm`
+result = `alien`
 
 unless $?.success?
   indent "Failure while downloading Oracle instant client archive: #{$?}"
