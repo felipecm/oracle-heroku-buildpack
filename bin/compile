@@ -29,7 +29,8 @@ indent "Making directory #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}"
 
 indent "Downloading and extracting #{ORACLE_INSTANT_CLIENT_FILENAME}"
 result = `wget #{ORACLE_INSTANT_CLIENT_URL} #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME}`
-result = `rpm -i #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME}`
+result = `sudo apt-get install alien`
+result = `alien -i #{BUILD_DIR}/#{ORACLE_INSTANT_CLIENT_DIR}/#{ORACLE_INSTANT_CLIENT_FILENAME}`
 
 unless $?.success?
   indent "Failure while downloading Oracle instant client archive: #{$?}"
